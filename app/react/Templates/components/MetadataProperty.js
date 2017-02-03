@@ -53,6 +53,9 @@ export class MetadataProperty extends Component {
         <li className='list-group-item'>
           <span className="property-name"><i className="fa fa-lock fa-fw"></i>&nbsp;<i className={iconClass}></i>&nbsp;{label}</span>
           <div className="list-group-item-actions">
+            <button type="button" className="btn btn-default btn-xs property-configuration">
+              <i className="fa fa-sort-amount-desc"></i>
+            </button>
             <button type="button" className="btn btn-default btn-xs property-edit" onClick={() => this.props.editProperty(localID)}>
               <i className="fa fa-pencil"></i> Edit
             </button>
@@ -78,6 +81,15 @@ export class MetadataProperty extends Component {
               <i className="fa fa-exclamation-triangle"></i>&nbsp;Duplicated label&nbsp;
             </span>
           </ShowIf>
+          <button type="button" className="btn btn-default btn-xs property-configuration">
+            <i className="fa fa-window-maximize"></i>
+          </button>
+          <button type="button" className="btn btn-default btn-xs property-configuration property-configuration-active">
+            <i className="fa fa-filter"></i>
+          </button>
+          <button type="button" className="btn btn-default btn-xs property-configuration">
+            <i className="fa fa-sort-amount-desc"></i>
+          </button>
           <button type="button" className="btn btn-default btn-xs property-edit" onClick={() => this.props.editProperty(localID)}>
             <i className="fa fa-pencil"></i> Edit
           </button>

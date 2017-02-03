@@ -13,6 +13,12 @@
   }
 }
 
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+  opacity: .3;
+}
+
 .form-control {
   height: 32px;
 }

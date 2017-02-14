@@ -49,7 +49,8 @@
   }
   &.is-active,
   &.is-selected {
-    border-color: $c-primary;
+    border-color: $c-bootstrap-primary;
+    box-shadow: inset 0 0 0 1px $c-bootstrap-primary-light, $box-shadow;
   }
 
   &-source-document {

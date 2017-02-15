@@ -4,6 +4,7 @@ import {actions as formActions} from 'react-redux-form';
 import {actions} from 'app/BasicReducer';
 import refenrecesAPI from 'app/Viewer/referencesAPI';
 import {removeDocument, unselectDocument} from 'app/Library/actions/libraryActions';
+import {fromJS as Immutable} from 'immutable';
 
 export function saveEntity(entity) {
   return function (dispatch) {
@@ -43,8 +44,8 @@ export function deleteReference(reference) {
 
 // TEST!!!
 export function searchReferences(entityId) {
-  console.log('----------------------------------');
-  console.log('entityId:', entityId);
+  // console.log('----------------------------------');
+  // console.log('entityId:', entityId);
   // console.log('limit:', limit);
 
   return function (dispatch, getState) {
@@ -68,6 +69,17 @@ export function loadMoreReferences(limit) {
   return function (dispatch, getState) {
     const entityView = getState().entityView;
     dispatch(actions.set('entityView/filters', entityView.filters.set('limit', limit)));
-    searchReferences(entityView.entity.get('sharedId'))(dispatch, getState);
+    return searchReferences(entityView.entity.get('sharedId'))(dispatch, getState);
+  };
+}
+
+export function setFilter(groupFilterValues) {
+  console.log('Group filter values: ', groupFilterValues);
+  return function (dispatch, getState) {
+    const entityView = getState().entityView;
+    const currentFilter = entityView.filters.get('filter') || Immutable({});
+    const newFilter = currentFilter.merge(groupFilterValues);
+    dispatch(actions.set('entityView/filters', entityView.filters.set('filter', newFilter)));
+    return searchReferences(entityView.entity.get('sharedId'))(dispatch, getState);
   };
 }

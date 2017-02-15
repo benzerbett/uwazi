@@ -82,9 +82,12 @@ export class MetadataProperty extends Component {
             </span>
           </ShowIf>
           <button type="button" className="btn btn-default btn-xs property-configuration">
+            <i className="fa fa-asterisk"></i>
+          </button>
+          <button type="button" className="btn btn-default btn-xs property-configuration">
             <i className="fa fa-window-maximize"></i>
           </button>
-          <button type="button" className="btn btn-default btn-xs property-configuration property-configuration-active">
+          <button type="button" className="btn btn-default btn-xs property-configuration">
             <i className="fa fa-filter"></i>
           </button>
           <button type="button" className="btn btn-default btn-xs property-configuration">

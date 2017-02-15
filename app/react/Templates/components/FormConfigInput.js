@@ -31,7 +31,9 @@ export class FormConfigInput extends Component {
         </div>
 
         <Field model={`template.data.properties[${index}].required`}>
-          <input id={'required' + index} type="checkbox"/>
+          <button type="button" className="btn btn-default btn-xs property-configuration">
+            <i className="fa fa-asterisk"></i>
+          </button>
           &nbsp;
           <label className="property-label" htmlFor={'required' + index}>
             Required property
@@ -42,7 +44,9 @@ export class FormConfigInput extends Component {
         </Field>
 
         <Field model={`template.data.properties[${index}].showInCard`}>
-          <input id={'showInCard' + this.props.index} type="checkbox"/>
+          <button type="button" className="btn btn-default btn-xs property-configuration">
+            <i className="fa fa-window-maximize"></i>
+          </button>
           &nbsp;
           <label className="property-label" htmlFor={'showInCard' + this.props.index}>
             Show in cards
@@ -54,7 +58,9 @@ export class FormConfigInput extends Component {
 
         <div>
           <Field model={`template.data.properties[${index}].filter`}>
-            <input id={'filter' + this.props.index} type="checkbox"/>
+            <button type="button" className="btn btn-default btn-xs property-configuration">
+              <i className="fa fa-filter"></i>
+            </button>
             &nbsp;
             <label className="property-label" htmlFor={'filter' + this.props.index}>
               Use as filter
@@ -72,7 +78,9 @@ export class FormConfigInput extends Component {
 
         <ShowIf if={type === 'text' || type === 'date'}>
           <Field model={`template.data.properties[${index}].prioritySorting`}>
-            <input id={'prioritySorting' + this.props.index} type="checkbox" disabled={!property.filter} />
+            <button type="button" className="btn btn-default btn-xs property-configuration">
+              <i className="fa fa-sort-amount-desc"></i>
+            </button>
             &nbsp;
             <PrioritySortingLabel htmlFor={'prioritySorting' + this.props.index} />
           </Field>

@@ -129,11 +129,19 @@
   margin-left: 15px !important;
 }
 
-.property-configuration:not(.property-configuration-active) {
-  opacity: .2;
-  color: $c-grey-dark;
+.property-configuration {
+  width: 25px;
+  text-align: center;
+  color: $c-grey;
+  margin: 0 5px 5px 0;
   
-  &:hover {
-    opacity: 1;
+  &.is-active {
+    border-color: $c-grey-dark;
+    color: $c-black;
+  }
+  
+  .list-group-item-actions & {
+    margin: 0;
   }
 }
+

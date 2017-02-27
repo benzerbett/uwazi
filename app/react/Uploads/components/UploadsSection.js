@@ -38,7 +38,26 @@ export class UploadsSection extends Component {
     return (
       <div className="row">
         <Helmet title={t('System', 'Uploads')}/>
+        <header className="uploadsHeader">
+          <span>My files</span>
+          <div className="pull-right">
+            <button className="btn btn-success btn-xs">
+              <i className="fa fa-upload"></i>Upload documents</button>
+            <button className="btn btn-success btn-xs">
+              <i className="fa fa-plus"></i>Create entity</button>
+          </div>
+        </header>
         <main className={className}>
+          <div className="sort-by">
+            <div className="u-floatLeft documents-counter">
+              <b>20</b> documentos
+            </div>
+            <div className="Dropdown order-by u-floatRight ">
+              <ul className="Dropdown-list">
+                <li className="Dropdown-option is-active"><a className="Dropdown-option__item is-active">Title (A-Z)</a></li>
+              </ul>
+            </div>
+          </div>
           <UploadBox />
           <UploadsList socket={this.socket}/>
         </main>

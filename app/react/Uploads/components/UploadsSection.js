@@ -31,24 +31,31 @@ export class UploadsSection extends Component {
   }
 
   render() {
-    let className = 'document-viewer';
+    let className = '';
     if (this.props.panelIsOpen) {
-      className = 'document-viewer with-panel is-active';
+      className = ' with-panel is-active';
     }
     return (
       <div className="row">
         <Helmet title={t('System', 'Uploads')}/>
-        <main className={className}>
+        <div className={'section-header' + className}>
+          <h1>My files</h1>
+          <div className="pull-right">
+            <button className="btn btn-success btn-xs">
+              <i className="fa fa-upload"></i> Upload documents
+            </button>
+            <button className="btn btn-success btn-xs">
+              <i className="fa fa-plus"></i> New entity
+            </button>
+          </div>
+        </div>
+        <main className={'document-viewer' + className}>
           <UploadBox />
           <UploadsList socket={this.socket}/>
         </main>
         <UploadsFormPanel />
         <UploadFailedModal />
         <ReadyToPublishModal />
-
-        <ContextMenu>
-          <UploadsMenu />
-        </ContextMenu>
       </div>
     );
   }

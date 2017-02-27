@@ -1,3 +1,32 @@
 main {
 	//padding: 15px 0;
 }
+
+.section-header {
+  width: 100%;
+  height: $header-height;
+  line-height: $header-height;
+  padding: 0 15px;
+  background: $c-white;
+  border-bottom: 1px solid $c-grey-light;
+  transition: width 500ms;
+  overflow: hidden;
+  
+  @media(min-width: 1024px) {
+    &.with-panel {
+      width: calc(100% - 400px);
+    }
+  }
+  
+  h1 {
+    display: inline-block;
+    margin: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    white-space: nowrap;
+  }
+  
+  .btn {
+    margin-left: 5px;
+  }
+}

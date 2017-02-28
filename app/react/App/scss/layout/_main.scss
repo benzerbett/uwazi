@@ -28,5 +28,16 @@ main {
   
   .btn {
     margin-left: 5px;
+    min-width: 30px;
+    
+    @media(max-width: 420px) {
+      span {
+        display: none;
+      }
+      span.show-mobile {
+        display: inline-block;
+        text-transform: capitalize;
+      }
+    }
   }
 }

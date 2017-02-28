@@ -42,10 +42,10 @@ export class UploadsSection extends Component {
           <h1>My files</h1>
           <div className="pull-right">
             <button className="btn btn-success btn-xs">
-              <i className="fa fa-upload"></i> Upload documents
+              <i className="fa fa-upload"></i> <span>Upload </span><span className="show-mobile">documents</span>
             </button>
             <button className="btn btn-success btn-xs">
-              <i className="fa fa-plus"></i> New entity
+              <i className="fa fa-plus"></i> <span>New </span><span className="show-mobile">entity</span>
             </button>
           </div>
         </div>

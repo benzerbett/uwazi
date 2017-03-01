@@ -303,6 +303,20 @@ describe('entities', () => {
       })
       .catch(done.fail);
     });
+
+    describe('when changing template and the entity is being used as a thesauri by another entity/document', () => {
+      it('should throw an error', (done) => {
+        let batmanWithChangedTemplate = {_id: batmanFinishesId, sharedId: 'shared', template: templateChangingNames};
+        entities.save(batmanWithChangedTemplate, {user:{}, language: 'es'})
+        .then(() => {
+          done.fail('should not change the template because its being used as thesauri');
+        })
+        .catch((error) => {
+          expect(error).toBe('entity being used as thesauri, can not change template');
+          done();
+        });
+      });
+    });
   });
 
   describe('delete', () => {

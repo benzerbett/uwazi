@@ -8,6 +8,38 @@ import ID from 'shared/uniqueID';
 
 import model from './entitiesModel';
 
+const validate = (doc) => {
+  return model.getById(doc._id)
+  .then((previousDoc) => {
+    if (!doc.template) {
+      return Promise.resolve();
+    }
+    if (doc.template.toString() === previousDoc.template.toString()) {
+      return Promise.resolve();
+    }
+
+    return templates.get({'properties.content': previousDoc.template})
+    .then((allTemplates) => {
+      const allProperties = allTemplates.reduce((m, t) => m.concat(t.properties), []);
+      let query = {$or: []};
+      query.$or = allProperties.filter(p => p.content && previousDoc.template.equals(p.content))
+      .map((property) => {
+        let p = {};
+        p[`metadata.${property.name}`] = doc.sharedId;
+        return p;
+      });
+
+      return model.count(query);
+    })
+    .then((beingUsed) => {
+      if (beingUsed) {
+        return Promise.reject('entity being used as thesauri, can not change template');
+      }
+      return Promise.resolve();
+    });
+  });
+};
+
 export default {
   save(doc, {user, language}) {
     if (!doc.sharedId) {
@@ -21,7 +53,8 @@ export default {
     }
 
     const sharedId = doc.sharedId || ID();
-    return settings.get()
+    return validate(doc)
+    .then(() => settings.get())
     .then(({languages}) => {
       if (doc.sharedId) {
         return Promise.all([

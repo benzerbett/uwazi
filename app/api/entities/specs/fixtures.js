@@ -3,6 +3,8 @@ import {db} from 'api/utils';
 const batmanFinishesId = db.id();
 const syncPropertiesEntityId = db.id();
 const templateId = db.id();
+const templateWithThesauriId = db.id();
+const templateWithThesauriId2 = db.id();
 const templateChangingNames = db.id();
 const referenceId = db.id();
 
@@ -19,7 +21,10 @@ export default {
     {_id: db.id(), template: templateId, sharedId: 'shared1', type: 'entity', language: 'pt', title: 'PT', creationDate: 1, published: true, metadata: {text: 'text'}},
     //docs to change metadata property names
     {_id: db.id(), template: templateChangingNames, sharedId: 'shared10', type: 'entity', language: 'pt', title: 'PT', creationDate: 1, published: true, metadata: {property1: 'value1', property2: 'value2', property3: 'value3'}},
-    {_id: db.id(), template: templateChangingNames, sharedId: 'shared10', type: 'entity', language: 'pt', title: 'PT', creationDate: 1, published: true, metadata: {property1: 'value1', property2: 'value2', property3: 'value3'}}
+    {_id: db.id(), template: templateChangingNames, sharedId: 'shared10', type: 'entity', language: 'pt', title: 'PT', creationDate: 1, published: true, metadata: {property1: 'value1', property2: 'value2', property3: 'value3'}},
+    //entity using another entity as thesauri value
+    {_id: db.id(), template: templateWithThesauriId2, sharedId: 'newId', type: 'entity', language: 'en', title: 'using batman as thesauri', creationDate: 1, published: true, metadata: {thesauri2: 'another_shared'}},
+    {_id: db.id(), template: templateWithThesauriId, sharedId: 'newId', type: 'entity', language: 'en', title: 'using batman as thesauri', creationDate: 1, published: true, metadata: {thesauri: 'shared'}}
   ],
   settings: [
     {_id: db.id(), languages: [{key: 'es'}, {key: 'pt'}, {key: 'en'}]}
@@ -37,6 +42,12 @@ export default {
       {type: 'text', name: 'property1'},
       {type: 'text', name: 'property2'},
       {type: 'text', name: 'property3'}
+    ]},
+    {_id: templateWithThesauriId2, name: 'templateWithThesauriId', properties: [
+      {type: 'select', name: 'thesauri2', content: templateId.toString()}
+    ]},
+    {_id: templateWithThesauriId, name: 'templateWithThesauriId', properties: [
+      {type: 'select', name: 'thesauri', content: templateId.toString()}
     ]}
   ],
   connections: [

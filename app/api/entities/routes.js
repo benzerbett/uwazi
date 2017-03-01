@@ -17,7 +17,7 @@ export default (app) => {
       req.io.sockets.emit('thesauriChange', templateTransformed);
     })
     .catch(error => {
-      res.json({error})
+      res.json({error}, 500);
     });
   });
 
